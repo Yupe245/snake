@@ -136,7 +136,7 @@ function loop() {
 
         if (state.snake.x == state.apple.x && state.snake.y == state.apple.y) {
             state.tail.push([ state.apple.x, state.apple.y ]);
-            state.score++;
+            state.score += 1;
             generateApple();
         };
 

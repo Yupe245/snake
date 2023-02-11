@@ -97,7 +97,8 @@ addEventListener("keydown", async({key}) => {
             break;
         default:
             break;
-    }
+    };
+    document.getElementById("score").innerText = state.score;
 });
 
 addEventListener("click", () => {

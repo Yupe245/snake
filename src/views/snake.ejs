@@ -6,11 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lilSnake</title>
 
+    <link rel="stylesheet" href="http://localhost:8080/public/snake.css">
     <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');</style>
 </head>
 <body>
     <div>Score: <span id="score">0</span></div>
     <canvas id="snake"></canvas>
+
+    <div class="information">
+        <ul>
+            <h2>How to Play?</h2>
+            <li>
+                <p>You can use w a s d or ↑ ← ↓ → keys to move snake.</p>
+            </li>
+            <li>
+                <p>Aaaand BOOM! You are playing right now!</p>
+            </li>
+        </ul>
+        <button onclick="gameOver()">GameOver!</button>
+    </div>
 
     <script src="http://localhost:8080/public/snake.js"></script>
 </body>

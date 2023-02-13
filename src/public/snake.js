@@ -40,6 +40,19 @@ class Square {
     };
 };
 
+class Apple {
+    constructor (x, y) {
+        this.x = x;
+        this.y = y;
+    };
+
+    draw() {
+        const img = new Image();
+        img.src = "http://localhost:8080/public/apple.png";
+        ctx.drawImage(img, this.x + 5, this.y + 4);
+    };
+};
+
 class Text {
     constructor (text, x, y, textAlign, fontSize) {
         this.text = text;
@@ -97,7 +110,7 @@ addEventListener("keydown", async({key}) => {
             break;
         default:
             break;
-    };
+    }
     document.getElementById("score").innerText = state.score;
 });
 
@@ -129,7 +142,9 @@ function loop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         new Square(0, 0, canvas.width, canvas.height, "black").draw();
         new Square(state.snake.x, state.snake.y, state.size, state.size, "green").draw();
-        new Square(state.apple.x, state.apple.y, state.size, state.size, "red").draw();
+        new Apple(state.apple.x, state.apple.y).draw();
+        new Text("Score: "+state.score, state.cols * state.size, 0, "center", 10).draw();
+        // new Square(state.apple.x, state.apple.y, state.size, state.size, "red").draw(); 
 
         state.snake.x += state.vel.x * state.size;
         state.snake.y += state.vel.y * state.size;
@@ -152,9 +167,24 @@ function loop() {
             new Square(state.tail[i][0], state.tail[i][1], state.size, state.size, "green").draw();
         };
 
-        if (state.snake.x < 0 || state.snake.x > state.cols * state.size || state.snake.y < 0 || state.snake.y > state.rows * state.size) {
-            gameOver();
+        if (state.snake.x < 0) {
+            state.snake.x = state.cols * state.size + state.size;
         };
+        if (state.snake.x > state.cols * state.size + state.size) {
+            state.snake.x = 0;
+        };
+
+        if (state.snake.y < 0) {
+            state.snake.y = state.rows * state.size + state.size;
+        };
+        if (state.snake.y > state.rows * state.size + state.size) {
+            state.snake.y = 0;
+        };
+
+        console.log("snake", state.snake);
+
+        // gameOver();
+        //  ||  || state.snake.y < 0 || 
 
         if (state.gameOver) {
             new Text("Game Over!", canvas.width / 2, canvas.height / 2 - 20, "center", 50).draw();

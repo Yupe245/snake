@@ -168,23 +168,18 @@ function loop() {
         };
 
         if (state.snake.x < 0) {
-            state.snake.x = state.cols * state.size + state.size;
+            state.snake.x = state.cols * state.size;
         };
-        if (state.snake.x > state.cols * state.size + state.size) {
+        if (state.snake.x > state.cols * state.size) {
             state.snake.x = 0;
         };
 
         if (state.snake.y < 0) {
-            state.snake.y = state.rows * state.size + state.size;
+            state.snake.y = state.rows * state.size;
         };
-        if (state.snake.y > state.rows * state.size + state.size) {
+        if (state.snake.y > state.rows * state.size + 10) {
             state.snake.y = 0;
         };
-
-        console.log("snake", state.snake);
-
-        // gameOver();
-        //  ||  || state.snake.y < 0 || 
 
         if (state.gameOver) {
             new Text("Game Over!", canvas.width / 2, canvas.height / 2 - 20, "center", 50).draw();
